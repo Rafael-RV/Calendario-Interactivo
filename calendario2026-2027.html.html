@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calendario Familiar 2026-27 · Madrid & Alcoy/Valencia</title>
+<style>
+:root{--r:#BF1F2C;--y:#FDCB00;--bg:#FFF8EC;--card:#FFFDF8;--t:#3a3f47;--m:#6b7078;--sh:0 4px 14px rgba(60,40,20,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2522;--card:#35302c;--t:#f1e9dc;--m:#b9afa0;--sh:0 4px 14px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#2a2522;--card:#35302c;--t:#f1e9dc;--m:#b9afa0;--sh:0 4px 14px rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--t);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:520px;margin:auto;padding-bottom:20px}
+header{background:var(--r);color:#fff;padding:14px 16px 12px;border-bottom:5px solid var(--y);border-radius:0 0 22px 22px}
+h1{font-size:1.15rem;text-align:center}
+.tabs{display:flex;gap:8px;margin-top:10px}
+.tab{flex:1;border:2px solid var(--y);background:transparent;color:#fff;padding:9px;border-radius:30px;font:inherit;font-weight:700;cursor:pointer}
+.tab.on{background:var(--y);color:#3a1a00}
+.prog{margin:14px 14px 4px;background:var(--card);border-radius:18px;padding:12px 14px;box-shadow:var(--sh)}
+.bar{height:12px;background:#eadfca;border-radius:9px;overflow:hidden;margin:8px 0}
+.fill{height:100%;background:linear-gradient(90deg,var(--r),var(--y));border-radius:9px;transition:width .8s}
+.big{font-weight:800;color:var(--r)}.sm{font-size:.82rem;color:var(--m)}
+.nav{display:flex;align-items:center;gap:8px;margin:10px 14px}
+.nav button{border:0;background:var(--r);color:#fff;font:inherit;font-weight:700;padding:10px 14px;border-radius:30px;box-shadow:var(--sh);cursor:pointer}
+.nav button:disabled{opacity:.35}
+.dots{flex:1;display:flex;justify-content:center;gap:5px;flex-wrap:wrap}
+.dots i{width:9px;height:9px;border-radius:50%;background:#d8ccb6;display:block;cursor:pointer}
+.dots i.on{background:var(--r);outline:2px solid var(--y);transform:scale(1.2)}
+#card{margin:0 14px;touch-action:pan-y}
+.c{background:var(--card);border-radius:20px;box-shadow:var(--sh);overflow:hidden;animation:in .3s}
+@keyframes in{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.ch{background:var(--r);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid var(--y)}
+.ch b{font-size:1.3rem}.badge{background:var(--y);color:#3a1a00;font-weight:800;font-size:.75rem;padding:4px 10px;border-radius:20px}
+.s{padding:12px 16px;border-top:1px dashed #e4d6bd}
+.s h3{font-size:.95rem;color:var(--r);margin-bottom:5px}
+.s ul{padding-left:18px}.s li{margin:3px 0}
+.hol li::marker{color:var(--y)}
+.q{font-style:italic}
+.v{margin-top:8px;background:rgba(253,203,0,.18);border-left:4px solid var(--y);padding:8px 10px;border-radius:0 12px 12px 0}
+.v small{display:block;color:var(--m);font-style:normal;font-weight:700}
+.cd{margin:14px 14px 0;background:linear-gradient(135deg,var(--r),#8e1420);color:#fff;border-radius:22px;border:3px solid var(--y);padding:14px 12px;text-align:center;box-shadow:var(--sh);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.cd:active{transform:scale(.98)}
+.cd .lb{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--y);font-weight:800}
+.cd .nm{font-size:3rem;font-weight:900;line-height:1.1;color:#fff}
+.cd .nm.t{font-size:1.25rem;line-height:1.3;padding:6px 4px}
+.cd .hn{font-size:.72rem;opacity:.85;margin-top:2px}
+.pop{animation:pop .35s}@keyframes pop{50%{transform:scale(1.06)}}
+.jb{margin-top:8px;border:2px solid var(--y);background:transparent;color:var(--r);font:inherit;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer}
+.ans{margin-top:8px;font-weight:700;color:var(--r)}
+.foot{margin:14px 18px;text-align:center;font-size:.75rem;color:var(--m)}
+</style></head><body>
+<header><h1>🏡 Calendario Familiar 2026-27</h1>
+<div class="tabs"><button class="tab on" data-r="m">Madrid</button><button class="tab" data-r="v">Alcoy/Valencia</button></div></header>
+<div id="cd" class="cd" role="button" tabindex="0" aria-live="polite"></div>
+<div class="prog"><div style="display:flex;justify-content:space-between"><b>Curso escolar</b><span class="big" id="pct"></span></div>
+<div class="bar"><div class="fill" id="fill" style="width:0"></div></div></div>
+<div class="nav"><button id="pv">‹ Anterior</button><div class="dots" id="dots"></div><button id="nx">Siguiente ›</button></div>
+<div id="card"></div>
+<p class="foot">Fechas aproximadas: confirma en el calendario oficial de tu centro y comunidad. 🇪🇸 Desliza ← → para cambiar de mes.</p>
+<script>
+const SEA={o:{n:"Otoño 🍂",m:"Madrid refresca pronto por las noches: capas intermedias, chaqueta ligera y gabardina por si llueve.",v:"Más templado al inicio y con humedad: camiseta + chaqueta fina o cortavientos; en Alcoy las noches ya refrescan."},
+i:{n:"Invierno ❄️",m:"Frío intenso en mañanas y noches, con posibles heladas: abrigo de paño o plumas, bufanda de lana, gorro y guantes.",v:"Alcoy, de montaña, es más fresco: abrigo, bufanda y gorro. En Valencia es más suave, pero la brisa húmeda cala: chaqueta cortavientos y capas."},
+p:{n:"Primavera 🌸",m:"Ropa de entretiempo y capas fáciles de quitar: fresco a primera hora, calor al mediodía. Chaqueta flexible en la mochila.",v:"Suave y luminoso: manga larga fina, chaqueta ligera y algo de abrigo para las tardes de Alcoy. Paraguas pequeño para chubascos."},
+e:{n:"Verano ☀️",m:"Calor seco acusado: algodón o lino, gorra, protector solar y botella de agua siempre a mano.",v:"Cálido y costero (más húmedo): lino o algodón, gorra, protección solar, hidratación y chancletas para la playa."}};
+const M=[
+{n:"Septiembre 2026",b:"Vuelta al cole",s:"o",hm:["~8 Sep: inicio del curso (aprox.)","Sin festivos nacionales"],hv:["~8 Sep: inicio del curso (aprox.)","Sin festivos; calor todavía fuerte"],q:"El hogar no es un lugar, es la gente que te espera con los brazos abiertos.",vs:["Proverbios 22:6","Enseña al niño el camino y no se apartará de él."],fm:"Paseo de tarde por el Retiro y merienda en el césped.",fv:"Atardecer en el paseo marítimo de la Malvarrosa o tarde en la plaça d'Espanya de Alcoy.",p:"Foto de la mochila nueva y la familia en la puerta del cole."},
+{n:"Octubre 2026",b:"Otoño dorado",s:"o",hm:["12 Oct (lun): Fiesta Nacional"],hv:["9 Oct (vie): Día de la Comunitat Valenciana","12 Oct (lun): Fiesta Nacional"],q:"Cada hoja que cae nos recuerda que juntos todo es más bonito.",vs:["Salmo 133:1","¡Cuán bueno es habitar los hermanos juntos en armonía!"],fm:"Retiro cubierto de hojas ocres: picnic y fotos bajo los árboles.",fv:"Día de la Comunitat con mocadorà y paseo por el jardín del Turia; Alcoy: senda en la Font Roja.",p:"Familia lanzando hojas secas al aire."},
+{n:"Noviembre 2026",b:"Calor de hogar",s:"o",hm:["2 Nov (lun): Todos los Santos (trasladado)","9 Nov (lun): La Almudena (Madrid capital)"],hv:["1 Nov (dom): Todos los Santos","Sin festivos entre semana"],q:"Dar gracias en familia convierte lo sencillo en abundancia.",vs:["Salmo 107:1","Den gracias al Señor, porque él es bueno."],fm:"Castañas asadas, mantas y tarde de juegos de mesa; buñuelos de Todos los Santos.",fv:"Panellets y buñuelos en casa; paseo por el Saler o por el casco antiguo de Alcoy.",p:"Retrato familiar con bufandas y castañas."},
+{n:"Diciembre 2026",b:"Navidad",s:"i",hm:["7 Dic (lun): Constitución (trasladado)","8 Dic (mar): Inmaculada","~23 Dic: inicio vacaciones","25 Dic (vie): Navidad"],hv:["8 Dic (mar): Inmaculada","~23 Dic: inicio vacaciones","25 Dic (vie): Navidad"],q:"La Navidad empieza en el corazón y se queda en la mesa familiar.",vs:["Lucas 2:11","Les ha nacido hoy un Salvador."],fm:"Carta al Niño Jesús, galletas caseras, belén y luces de la Plaza Mayor.",fv:"Belén de Alcoy, turrón local y paseo por las luces de la Calle Colón.",p:"Foto con jerséis navideños junto al árbol."},
+{n:"Enero 2027",b:"Reyes Magos",s:"i",hm:["1 Ene (vie): Año Nuevo","6 Ene (mié): Reyes Magos","~7 Ene: vuelta al cole"],hv:["1 Ene (vie): Año Nuevo","5 Ene: Cabalgata de Reyes de Alcoy, la más antigua de España","6 Ene (mié): Reyes Magos"],q:"Empezar el año juntos es el mejor regalo.",vs:["Jeremías 29:11","Planes de paz y de esperanza para ustedes."],fm:"Cabalgata, roscón de Reyes y chocolate con churros.",fv:"Cabalgata en Alcoy; roscón en familia y paseo por Valencia.",p:"Niños con coronas del roscón."},
+{n:"Febrero 2027",b:"Carnaval y calor",s:"i",hm:["~6–9 Feb: Carnaval (aprox.)","Sin festivos oficiales"],hv:["~6–9 Feb: Carnaval (aprox.)","Sin festivos oficiales"],q:"Un chocolate caliente compartido vale más que mil palabras.",vs:["Proverbios 17:22","El corazón alegre es buena medicina."],fm:"Chocolate con churros en San Ginés y tarde de disfraces caseros.",fv:"Tardes de mantas con chocolate espeso; almendros en flor en la sierra de Alcoy.",p:"Disfraces caseros y caras pintadas."},
+{n:"Marzo 2027",b:"Semana Santa y Fallas",s:"p",hm:["25 Mar (jue): Jueves Santo","26 Mar (vie): Viernes Santo","~26 Mar–5 Abr: vacaciones Semana Santa"],hv:["15–19 Mar: Fallas (19 Mar vie: San José)","26 Mar (vie): Viernes Santo","29 Mar (lun): Lunes de Pascua"],q:"La primavera nos enseña que siempre hay un nuevo comienzo.",vs:["Mateo 28:6","No está aquí; ha resucitado."],fm:"Procesiones, torrijas caseras y paseo por el barrio de las Letras.",fv:"Mascletà, fallas y buñuelos de calabaza; paseo por el Parque de Cabecera.",p:"Torrijas recién hechas o monumento fallero."},
+{n:"Abril 2027",b:"Moros y Cristianos",s:"p",hm:["Sin festivos oficiales","23 Abr: Día del Libro, regalo de libro y rosa"],hv:["5 Abr (lun): San Vicente Ferrer (aprox.)","22–24 Abr: Moros y Cristianos de Alcoy (San Jorge)"],q:"Las tradiciones son el hilo con el que una familia teje su historia.",vs:["Salmo 118:24","Este es el día que hizo el Señor; alegrémonos."],fm:"Escapada a Aranjuez o Chinchón y feria del libro en el Retiro.",fv:"Alcoy: entrada mora y cristiana y la Gloria; el castillo de Guadalest.",p:"Familia con trajes de fiesta o libro en la mano."},
+{n:"Mayo 2027",b:"Flores y fiestas",s:"p",hm:["1 May (sáb): Día del Trabajo","2 May (dom): Comunidad de Madrid","15 May (sáb): San Isidro"],hv:["1 May (sáb): Día del Trabajo","Sin otros festivos"],q:"Hogar es donde se celebra cada pequeña victoria.",vs:["Cantares 2:12","Han aparecido las flores sobre la tierra."],fm:"San Isidro: pradera, chulapos y limonada; paseo por el Jardín Botánico.",fv:"Picnic en la Albufera, paseo en barca y arroz familiar.",p:"Chulapos y claveles o atardecer en la Albufera."},
+{n:"Junio 2027",b:"Fin de curso",s:"e",hm:["~18–19 Jun: fin de curso (aprox.)","Verano empieza el 21 Jun"],hv:["~18 Jun: fin de curso (aprox.)","23 Jun: Nit de Sant Joan (hogueras y playa)"],q:"Lo que sembramos juntos todo el año hoy da fruto.",vs:["Gálatas 6:9","A su tiempo cosecharemos, si no nos cansamos."],fm:"Cena de fin de curso, helado y piscina; noche de verano en la azotea.",fv:"Nit de Sant Joan: fogata, ola a la medianoche y deseos escritos.",p:"Foto con diploma o dibujo del curso."},
+{n:"Julio 2027",b:"Verano en familia",s:"e",hm:["Vacaciones escolares","Sin festivos nacionales"],hv:["Vacaciones escolares","Sin festivos nacionales; Moros y Cristianos en la costa"],q:"Los recuerdos de verano son el tesoro que la familia guarda siempre.",vs:["Salmo 74:17","Tú hiciste el verano y el invierno."],fm:"Cine al aire libre, helados y escapada a la sierra de Guadarrama.",fv:"Playa al amanecer, horchata con fartons y noches de tertulia.",p:"Siluetas familiares en el atardecer."}];
+const J={1:["¿Por qué el libro de matemáticas estaba triste?","Porque tenía muchos problemas. 📚"],3:["¿Por qué los Reyes Magos viajan de noche?","Porque así se ve mejor la estrella. ⭐"],5:["—Camarero, ¿este chocolate lleva churros?","—No, señor: ¡los churros llevan chocolate! 🍫"],7:["¿Por qué los libros nunca pasan frío?","Porque tienen sobrecubierta. 📖"],9:["¿Qué hace una abeja en el gimnasio?","¡Zum-ba! 🐝"]};
+let i=0,r="m",$=id=>document.getElementById(id);
+function fam(d){const j=J[i],V=`<div class="v"><small>📖 ${d.vs[0]}</small>${d.vs[1]}</div>`;
+if(!j)return`<div class="s"><h3>🕊️ Frase y versículo de ${d.n.split(" ")[0]}</h3><p class="q">“${d.q}”</p>${V}</div>`;
+return`<div class="s"><h3>😄 Sonrisa en familia</h3><p class="q">${j[0]}</p><button class="jb" id="jb">¿Y la respuesta? 🥁</button><p class="ans" id="ans" hidden>${j[1]}</p></div><div class="s"><h3>🕊️ Versículo de ${d.n.split(" ")[0]}</h3>${V}</div>`;}
+function card(){const d=M[i],s=SEA[d.s],h=r=="m"?d.hm:d.hv;
+$("card").innerHTML=`<div class="c"><div class="ch"><b>${d.n}</b><span class="badge">${d.b}</span></div>
+<div class="s hol"><h3>📅 Feriados · ${r=="m"?"Madrid":"Alcoy/Valencia"}</h3><ul>${h.map(x=>"<li>"+x+"</li>").join("")}</ul></div>
+${fam(d)}
+<div class="s"><h3>📸 Momentos en Familia & Ideas de Fotos</h3><ul><li>${r=="m"?d.fm:d.fv}</li><li><b>Foto:</b> ${d.p}</li></ul></div>
+<div class="s"><h3>🧥 Vestimenta · ${s.n}</h3><p>${s[r]}</p></div></div>`;
+const jb=$("jb");if(jb)jb.onclick=()=>{$("ans").hidden=false;jb.hidden=true};
+$("dots").innerHTML=M.map((_,k)=>`<i class="${k==i?"on":""}" data-k="${k}"></i>`).join("");
+$("pv").disabled=!i;$("nx").disabled=i==10;}
+function go(n){if(n<0||n>10)return;i=n;card();}
+$("pv").onclick=()=>go(i-1);$("nx").onclick=()=>go(i+1);
+$("dots").onclick=e=>{if(e.target.dataset.k)go(+e.target.dataset.k)};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{r=b.dataset.r;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x==b));card();});
+let x0=0,y0=0;const c=$("card");
+c.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+c.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(i+(dx<0?1:-1));});
+const A=new Date(2026,8,8),Z=new Date(2027,5,18,14,0);let cm=0,mi=0;
+const MS=[d=>`¡Ánimo! Solo ${d} madrugones más 😴`,d=>`${d} días y a la piscina 🏊`,d=>`Cada día cuenta: ¡${d} y a por el verano! ☀️`,d=>`Faltan ${d} desayunos con prisas 🥣`,d=>`${d} días… ¡hasta los profes los cuentan! 😉`,d=>`¡Tú puedes! ${d} días de superhéroe escolar 🦸`];
+function prog(){const n=new Date(),ms=Z-n,p=Math.max(0,Math.min(100,(n-A)/(Z-A)*100));
+$("fill").style.width=p+"%";$("pct").textContent=Math.round(p)+"%";
+const t0=new Date(n.getFullYear(),n.getMonth(),n.getDate()),d=Math.max(0,Math.round((new Date(2027,5,18)-t0)/864e5)),el=$("cd");
+let lb,nm,t=0;
+if(ms<=0){lb="🎉 Fin de curso";nm="¡Felices vacaciones en familia!";t=1}
+else if(cm==0){lb="Días restantes";nm=d}
+else if(cm==1){lb="Horas restantes";nm=Math.floor(ms/36e5).toLocaleString("es-ES")}
+else if(cm==2){lb="Semanas y días";nm=Math.floor(d/7)+" sem · "+d%7+" d";}
+else{lb="Mensaje del día";nm=MS[mi%MS.length](d);t=1}
+el.innerHTML=`<div class="lb">⏳ ${lb} · hasta el 18 Jun 2027</div><div class="nm${t?" t":""}">${nm}</div><div class="hn">👆 Toca para cambiar de formato</div>`;}
+function tap(){cm=(cm+1)%4;if(cm==3)mi=Math.floor(Math.random()*MS.length);prog();const e=$("cd");e.classList.remove("pop");void e.offsetWidth;e.classList.add("pop");}
+$("cd").onclick=tap;$("cd").onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();tap()}};
+setInterval(prog,30000);
+prog();
+const now=new Date(),k=(now.getFullYear()-2026)*12+now.getMonth()-8;if(k>0&&k<11)i=k;
+card();
+</script></body></html>
